@@ -8,7 +8,7 @@ const ERROR_FETCHING = 'randomUsers/ERROR_FETCHING'
 export const fetchUsersAsyncAction = url => (dispatch, getState) => {
     dispatch(startFetchingAction())
 
-    fetch('https://randomuser.me/api')
+    fetch(url)
         .then(r => r.json())
         .then(data => {
             dispatch(
