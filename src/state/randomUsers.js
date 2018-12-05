@@ -1,8 +1,20 @@
+
 const SET_USERS = 'randomUsers/SET_USERS'
 
-export const setUsers = users => ({
+// redux-thunk calls acync action with dispatch and getState as arguments!
+export const fetchUsersAsyncAction = () => (dispatch, getState) => {
+  fetch('https://randomuser.me/api')
+    .then(r => r.json())
+    .then(data => {
+      dispatch(
+        setUsersAction(data.results)
+      )
+    })
+}
+
+const setUsersAction = users => ({
   type: SET_USERS,
-  users: users
+  users
 })
 
 const INITIAL_STATE = {
