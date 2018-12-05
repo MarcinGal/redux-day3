@@ -1,4 +1,6 @@
 import { createStore, combineReducers } from 'redux'
+import  counter from './state/counter'
+
 
 const reducer1 = () => {
     return {
@@ -12,16 +14,14 @@ const reducer2 = () => {
     }
 }
 
+
 const rootReducer = combineReducers({
     reducer1,
-    reducerWithoutShortcut: reducer2
+    reducerWithoutShortcut: reducer2,
+    counter
 })
 
 
 export const store = createStore(
     rootReducer
 )
-
-console.log(store)
-console.log(store.getState())
-console.log(rootReducer)
