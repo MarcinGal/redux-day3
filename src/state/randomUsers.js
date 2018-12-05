@@ -5,18 +5,18 @@ const STOP_FETCHING = 'randomUsers/STOP_FETCHING'
 const ERROR_FETCHING = 'randomUsers/ERROR_FETCHING'
 
 // redux-thunk calls acync action with dispatch and getState as arguments!
-export const fetchUsersAsyncAction = () => (dispatch, getState) => {
+export const fetchUsersAsyncAction = url => (dispatch, getState) => {
     dispatch(startFetchingAction())
 
     fetch('https://randomuser.me/api')
         .then(r => r.json())
         .then(data => {
             dispatch(
-                setUsersAction(data.results)
-            )
+                setUsersAction(data.results))
+                dispatch(stopFetchingAction())
         })
         .catch(() => {
-            dispatch(stopFetchingAction())
+            dispatch(errorFetchingAction())
         })
 }
 
